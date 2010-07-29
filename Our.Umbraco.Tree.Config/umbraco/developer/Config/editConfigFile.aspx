@@ -8,7 +8,7 @@
 	<umb:UmbracoPanel runat="server" ID="UmbracoPanel1" Text="Config Editor" hasMenu="true">
 		
 		<umb:Pane runat="server" ID="Pane1" Text="Edit Config File">
-
+			
 			<umb:Feedback runat="server" ID="Feedback1" Visible="false" />
 
 			<umb:PropertyPanel runat="server" ID="PropertyPanel1" Text="Name">
@@ -18,9 +18,9 @@
 			<umb:PropertyPanel runat="server" id="PropertyPanel2" Text="Path">
 				<asp:Literal ID="ltrlPath" runat="server" />
 			</umb:PropertyPanel>
-			
+
 			<umb:PropertyPanel runat="server" ID="PropertyPanel3">
-				<umb:CodeArea runat="server" ID="editorSource" CodeBase="XML" AutoResize="true" OffSetX="47" OffSetY="47" />
+				<umb:CodeArea runat="server" ID="editorSource" CodeBase="XML" AutoResize="true" OffSetX="47" OffSetY="47"  />
 			</umb:PropertyPanel>
 
 		</umb:Pane>

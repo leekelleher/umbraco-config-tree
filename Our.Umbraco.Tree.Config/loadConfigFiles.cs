@@ -53,14 +53,18 @@ namespace Our.Umbraco.Tree.Config
 			// render the folders/files
 			base.Render(ref tree);
 
-			// Add the Web.Config node
-			XmlTreeNode xNode = XmlTreeNode.Create(this);
-			xNode.NodeID = "WebConfig";
-			xNode.Action = "javascript:openConfigEditor('web.config');";
-			xNode.Text = "Web.config";
-			xNode.Icon = "../../developer/Config/config.gif";
-			xNode.OpenIcon = xNode.Icon;
-			tree.Add(xNode);
+			// the NodeKey is empty for the root, but contains the folder name for sub-folders.
+			if (string.IsNullOrEmpty(this.NodeKey))
+			{
+				// Add the Web.Config node
+				XmlTreeNode xNode = XmlTreeNode.Create(this);
+				xNode.NodeID = "WebConfig";
+				xNode.Action = "javascript:openConfigEditor('web.config');";
+				xNode.Text = "Web.config";
+				xNode.Icon = "../../developer/Config/config.gif";
+				xNode.OpenIcon = xNode.Icon;
+				tree.Add(xNode);
+			}
 		}
 
 		/// <summary>

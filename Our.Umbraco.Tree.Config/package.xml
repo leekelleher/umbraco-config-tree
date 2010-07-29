@@ -7,8 +7,13 @@
 			<orgName>Our.Umbraco.Tree.Config.dll</orgName>
 		</file>
 		<file>
+			<guid>config.gif</guid>
+			<orgPath>/umbraco/developer/Config</orgPath>
+			<orgName>config.gif</orgName>
+		</file>
+		<file>
 			<guid>editConfigFile.aspx</guid>
-			<orgPath>/umbraco/settings</orgPath>
+			<orgPath>/umbraco/developer/Config</orgPath>
 			<orgName>editConfigFile.aspx</orgName>
 		</file>
 	</files>
@@ -19,8 +24,8 @@
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>http://our.umbraco.org/projects/developer-tools/config-tree</url>
 			<requirements>
-				<major>4</major>
-				<minor>5</minor>
+				<major>3</major>
+				<minor>0</minor>
 				<patch>0</patch>
 			</requirements>
 		</package>
@@ -32,7 +37,8 @@
 			<![CDATA[Add an extra tree to the developer section, called "Config Files".
 This lists all the config files, including in sub-folders, to be edited.
 
-In this version the Web.config is also available to edit.]]></readme>
+In this version the Web.config is also available to edit.]]>
+		</readme>
 	</info>
 	<DocumentTypes />
 	<Templates />

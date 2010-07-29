@@ -45,6 +45,11 @@ namespace Our.Umbraco.Tree.Config
 				if (filename.Equals(WEB_CONFIG))
 				{
 					filePath = Server.MapPath(string.Concat("~/", filename));
+
+					// make a back-up of the existing web.config - in case of emergency
+					string unixTime = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString("F0");
+					string backupFile = filePath.Replace(".config", string.Concat(".backup.", unixTime, ".config"));
+					File.Copy(filePath, backupFile);
 				}
 				else
 				{
@@ -116,9 +121,10 @@ namespace Our.Umbraco.Tree.Config
 				this.txtName.Enabled = false;
 				
 				// show a warning message
-				this.Feedback1.Text = "Warning: You are currently editing the Web.config file. Any modifications could have an adverse effect or even break your website configuration.<br/><u>Please be very very careful!</u>";
+				this.Feedback1.Text = "Warning: You are currently editing the Web.config file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.";
 				this.Feedback1.type = Feedback.feedbacktype.notice;
 				this.Feedback1.Visible = true;
+				this.Feedback1.Style.Add("height", "37px"); // HACK: The AutoResize for the CodeArea JavaScript goes whacky if the Feedback height isn't set! [LK]
 			}
 			else
 			{
