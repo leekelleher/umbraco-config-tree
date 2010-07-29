@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<files>
+		<file>
+			<guid>Our.Umbraco.Tree.Config.dll</guid>
+			<orgPath>/bin</orgPath>
+			<orgName>Our.Umbraco.Tree.Config.dll</orgName>
+		</file>
+		<file>
+			<guid>editConfigFile.aspx</guid>
+			<orgPath>/umbraco/settings</orgPath>
+			<orgName>editConfigFile.aspx</orgName>
+		</file>
+	</files>
+	<info>
+		<package>
+			<name>Config Tree</name>
+			<version>2.0</version>
+			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+			<url>http://our.umbraco.org/projects/developer-tools/config-tree</url>
+			<requirements>
+				<major>4</major>
+				<minor>5</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>Tim Geyssens</name>
+			<website>http://www.nibble.be</website>
+		</author>
+		<readme>
+			<![CDATA[Add an extra tree to the developer section, called "Config Files".
+This lists all the config files, including in sub-folders, to be edited.
+
+In this version the Web.config is also available to edit.]]></readme>
+	</info>
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes />
+	<Actions>
+		<Action runat="install" alias="addApplicationTree" silent="false" initialize="true" sortOrder="6" applicationAlias="developer" treeAlias="configFiles" treeTitle="Config Files" iconOpened="folder_o.gif" iconClosed="folder.gif" assemblyName="Our.Umbraco.Tree.Config" treeHandlerType="LoadConfigFiles" action="" />
+	</Actions>
+</umbPackage>
