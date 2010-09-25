@@ -92,11 +92,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup>
-    <PostBuildEvent>XCOPY "$(ProjectDir)bin\$(ProjectName)*.*" "C:\Inetpub\wwwroot\umbraco45\bin\" /y
-XCOPY "$(ProjectDir)umbraco\developer\Config\*.aspx" "C:\Inetpub\wwwroot\umbraco45\umbraco\developer\Config\" /y
-XCOPY "$(ProjectDir)umbraco\developer\Config\*.gif" "C:\Inetpub\wwwroot\umbraco45\umbraco\developer\Config\" /y</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
