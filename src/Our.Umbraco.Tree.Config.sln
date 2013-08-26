@@ -6,8 +6,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E407EA58-6F71-4B4C-97CF-5A6C3FAC4F80}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD5572A1-A955-42D0-8E53-E6E085F4B519}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{29033FE0-7841-4587-AC23-04100F9689D1}"
+	ProjectSection(SolutionItems) = preProject
+		..\package\package.proj = ..\package\package.proj
+		..\package\package.txt = ..\package\package.txt
+		..\package\package.xml = ..\package\package.xml
 	EndProjectSection
 EndProject
 Global
@@ -23,5 +31,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E407EA58-6F71-4B4C-97CF-5A6C3FAC4F80} = {FD5572A1-A955-42D0-8E53-E6E085F4B519}
+		{29033FE0-7841-4587-AC23-04100F9689D1} = {FD5572A1-A955-42D0-8E53-E6E085F4B519}
 	EndGlobalSection
 EndGlobal

@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Our.Umbraco.Tree.Config")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Config Tree - a configuration file editor for Umbraco")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Umbraco Community")]
+[assembly: AssemblyCompany("The Umbraco Community")]
 [assembly: AssemblyProduct("Our.Umbraco.Tree.Config")]
-[assembly: AssemblyCopyright("Copyright \xa9 Umbraco Community 2013")]
+[assembly: AssemblyCopyright("Copyright \xa9 The Umbraco Community 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
-[assembly: Guid("ddb2c297-7487-47d0-9e0d-6dbacc553530")]
+[assembly: Guid("DDB2C297-7487-47D0-9E0D-6DBACC553530")]
