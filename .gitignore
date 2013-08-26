@@ -1,0 +1,14 @@
+_ReSharper.*
+[Bb]in
+[Bb]uild
+[Oo]bj
+*.suo
+*.user
+*.cache
+*.orig
+Thumbs.db
+.DS_Store
+
+tools/*
+
+Config_Tree_*.zip

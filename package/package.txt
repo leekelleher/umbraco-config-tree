@@ -1,0 +1,4 @@
+Add an extra tree to the developer section, called "Config Files".
+This lists all the config files, including in sub-folders, to be edited.
+
+In this version the Web.config is also available to edit.
