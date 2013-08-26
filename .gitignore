@@ -9,6 +9,7 @@ _ReSharper.*
 Thumbs.db
 .DS_Store
 
+src/packages/*/*
 tools/*
 
 Config_Tree_*.zip
