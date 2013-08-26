@@ -5,11 +5,10 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using umbraco;
+using umbraco.BasePages;
 using umbraco.BusinessLogic;
 using umbraco.uicontrols;
-using Umbraco.Web.UI.Pages;
 
 namespace Our.Umbraco.Tree.Config
 {
@@ -116,10 +115,10 @@ namespace Our.Umbraco.Tree.Config
 			if (file.Equals(WEB_CONFIG))
 			{
 				configFile = string.Concat("~/", file);
-				
+
 				// disable the filename text-box, so it can not be renamed
 				this.txtName.Enabled = false;
-				
+
 				// show a warning message
 				this.Feedback1.Text = "Warning: You are currently editing the Web.config file. Any modifications may potentially break your website. When you save a back-up copy will be made, in case of an emergency.";
 				this.Feedback1.type = Feedback.feedbacktype.notice;
@@ -187,11 +186,11 @@ namespace Our.Umbraco.Tree.Config
 			// save the file if there are no errors
 			if (this.SaveConfigFile(this.txtName.Text, Request.QueryString["file"], this.editorSource.Text))
 			{
-				ClientTools.ShowSpeechBubble(global::Umbraco.Web.UI.SpeechBubbleIcon.Save, ui.Text("speechBubbles", "fileSavedHeader"), ui.Text("speechBubbles", "fileSavedText"));
+				ClientTools.ShowSpeechBubble(speechBubbleIcon.save, ui.Text("speechBubbles", "fileSavedHeader"), ui.Text("speechBubbles", "fileSavedText"));
 			}
 			else
 			{
-                ClientTools.ShowSpeechBubble(global::Umbraco.Web.UI.SpeechBubbleIcon.Error, ui.Text("speechBubbles", "fileErrorHeader"), ui.Text("speechBubbles", "fileErrorText"));
+				ClientTools.ShowSpeechBubble(speechBubbleIcon.error, ui.Text("speechBubbles", "fileErrorHeader"), ui.Text("speechBubbles", "fileErrorText"));
 			}
 		}
 	}
