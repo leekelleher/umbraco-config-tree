@@ -47,7 +47,5 @@ In this version the Web.config is also available to edit.]]>
 	<DictionaryItems />
 	<Languages />
 	<DataTypes />
-	<Actions>
-		<Action runat="install" alias="addApplicationTree" silent="false" initialize="true" sortOrder="6" applicationAlias="developer" treeAlias="configFiles" treeTitle="Config Files" iconOpened="folder_o.gif" iconClosed="folder.gif" assemblyName="Our.Umbraco.Tree.Config" treeHandlerType="LoadConfigFiles" action="" />
-	</Actions>
+	<Actions/>
 </umbPackage>
