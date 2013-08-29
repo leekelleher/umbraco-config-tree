@@ -15,6 +15,11 @@ namespace Our.Umbraco.Tree.Config
 	public partial class EditConfigFile : UmbracoEnsuredPage
 	{
 		/// <summary>
+		/// A string containing the path to the config folder.
+		/// </summary>
+		private const string CONFIGPATH = "/config/";
+
+		/// <summary>
 		/// A string containing the filename of the web.config file.
 		/// </summary>
 		private const string WEB_CONFIG = "web.config";
@@ -30,8 +35,7 @@ namespace Our.Umbraco.Tree.Config
 		{
 			try
 			{
-				var configPath = SystemDirectories.Config;
-				var oldFilePath = Server.MapPath(string.Concat(configPath, oldFilename));
+				var oldFilePath = Server.MapPath(string.Concat(CONFIGPATH, oldFilename));
 				string filePath;
 
 				if (filename.Equals(WEB_CONFIG))
@@ -45,7 +49,7 @@ namespace Our.Umbraco.Tree.Config
 				}
 				else
 				{
-					filePath = Server.MapPath(string.Concat(configPath, filename));
+					filePath = Server.MapPath(string.Concat(CONFIGPATH, filename));
 				}
 
 				using (var sw = File.CreateText(filePath))
@@ -116,7 +120,7 @@ namespace Our.Umbraco.Tree.Config
 			}
 			else
 			{
-				configFile = string.Concat(SystemDirectories.Config, file);
+				configFile = string.Concat(CONFIGPATH, file);
 			}
 
 			this.txtName.Text = file;
