@@ -96,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="umbraco\developer\Config\editConfigFile.aspx" />
-    <Content Include="package.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
