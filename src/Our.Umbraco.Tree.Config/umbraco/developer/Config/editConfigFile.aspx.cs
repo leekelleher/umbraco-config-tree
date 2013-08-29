@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using umbraco;
 using umbraco.BasePages;
-using umbraco.BusinessLogic;
+using umbraco.IO;
 using umbraco.uicontrols;
 
 namespace Our.Umbraco.Tree.Config
@@ -17,11 +14,6 @@ namespace Our.Umbraco.Tree.Config
 	/// </summary>
 	public partial class EditConfigFile : UmbracoEnsuredPage
 	{
-		/// <summary>
-		/// A string containing the path to the config folder.
-		/// </summary>
-		private const string CONFIGPATH = "/config/";
-
 		/// <summary>
 		/// A string containing the filename of the web.config file.
 		/// </summary>
@@ -38,7 +30,8 @@ namespace Our.Umbraco.Tree.Config
 		{
 			try
 			{
-				string oldFilePath = Server.MapPath(string.Concat(CONFIGPATH, oldFilename));
+				var configPath = SystemDirectories.Config;
+				var oldFilePath = Server.MapPath(string.Concat(configPath, oldFilename));
 				string filePath;
 
 				if (filename.Equals(WEB_CONFIG))
@@ -46,13 +39,13 @@ namespace Our.Umbraco.Tree.Config
 					filePath = Server.MapPath(string.Concat("~/", filename));
 
 					// make a back-up of the existing web.config - in case of emergency
-					string unixTime = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString("F0");
-					string backupFile = filePath.Replace(".config", string.Concat(".backup.", unixTime, ".config"));
+					var unixTime = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString("F0");
+					var backupFile = filePath.Replace(".config", string.Concat(".backup.", unixTime, ".config"));
 					File.Copy(filePath, backupFile);
 				}
 				else
 				{
-					filePath = Server.MapPath(string.Concat(CONFIGPATH, filename));
+					filePath = Server.MapPath(string.Concat(configPath, filename));
 				}
 
 				using (var sw = File.CreateText(filePath))
@@ -65,9 +58,7 @@ namespace Our.Umbraco.Tree.Config
 				{
 					// then delete the old file.
 					if (File.Exists(oldFilePath))
-					{
 						File.Delete(oldFilePath);
-					}
 				}
 
 				return true;
@@ -79,9 +70,9 @@ namespace Our.Umbraco.Tree.Config
 		}
 
 		/// <summary>
-		/// Raises the <see cref="E:Init"/> event.
+		/// Raises the <see cref="E:System.Web.UI.Control.Init"></see> event to initialize the page.
 		/// </summary>
-		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+		/// <param name="e">An <see cref="T:System.EventArgs"></see> that contains the event data.</param>
 		protected override void OnInit(EventArgs e)
 		{
 			base.OnInit(e);
@@ -89,15 +80,13 @@ namespace Our.Umbraco.Tree.Config
 			if (this.UmbracoPanel1.hasMenu)
 			{
 				// add the save button
-				ImageButton menuSave = this.UmbracoPanel1.Menu.NewImageButton();
+				var menuSave = this.UmbracoPanel1.Menu.NewImageButton();
 				menuSave.AlternateText = "Save File";
-				menuSave.ImageUrl = String.Concat(GlobalSettings.Path, "/images/editor/save.gif");
+				menuSave.ImageUrl = string.Concat(GlobalSettings.Path, "/images/editor/save.gif");
 				menuSave.Click += new ImageClickEventHandler(MenuSave_Click);
 
 				if (Request.QueryString["file"] == WEB_CONFIG)
-				{
 					menuSave.OnClientClick = "javascript:return confirm('You have modified the Web.config, are you sure that you still want to save?');";
-				}
 			}
 		}
 
@@ -108,7 +97,7 @@ namespace Our.Umbraco.Tree.Config
 		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			string file = Request.QueryString["file"];
+			var file = Request.QueryString["file"];
 			string configFile;
 
 			// special case for web.config
@@ -127,36 +116,32 @@ namespace Our.Umbraco.Tree.Config
 			}
 			else
 			{
-				configFile = string.Concat(CONFIGPATH, file);
+				configFile = string.Concat(SystemDirectories.Config, file);
 			}
 
 			this.txtName.Text = file;
 
-			string appPath = Request.ApplicationPath;
+			var appPath = Request.ApplicationPath;
 			if (appPath == "/")
-			{
 				appPath = string.Empty;
-			}
 
 			this.ltrlPath.Text = string.Concat(appPath, configFile);
 
 			if (!IsPostBack)
 			{
-				string openPath = Server.MapPath(configFile);
+				var openPath = Server.MapPath(configFile);
 
 				if (File.Exists(openPath))
 				{
-					string fileContents = string.Empty;
+					var fileContents = string.Empty;
 
 					using (var sr = File.OpenText(openPath))
 					{
 						fileContents = sr.ReadToEnd();
 					}
 
-					if (!String.IsNullOrEmpty(fileContents))
-					{
+					if (!string.IsNullOrEmpty(fileContents))
 						this.editorSource.Text = fileContents;
-					}
 				}
 				else
 				{

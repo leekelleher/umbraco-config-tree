@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Web;
-using System.Xml;
-using umbraco.cms.presentation.Trees;
-using umbraco.BusinessLogic.Actions;
-using umbraco.interfaces;
+using umbraco;
 using umbraco.businesslogic;
+using umbraco.BusinessLogic.Actions;
+using umbraco.cms.presentation.Trees;
+using umbraco.interfaces;
+using umbraco.IO;
 
 namespace Our.Umbraco.Tree.Config
 {
 	/// <summary>
 	/// Loads the config files into the tree.
 	/// </summary>
-    [Tree("developer", "configFiles", "Config Files")]
+	[Tree("developer", "configFiles", "Config Files")]
 	public class LoadConfigFiles : FileSystemTree
 	{
 		public LoadConfigFiles(string application)
@@ -29,7 +29,7 @@ namespace Our.Umbraco.Tree.Config
 		{
 			get
 			{
-				return "/config/";
+				return SystemDirectories.Config;
 			}
 		}
 
@@ -51,13 +51,13 @@ namespace Our.Umbraco.Tree.Config
 		/// <param name="tree">The application tree.</param>
 		public override void Render(ref XmlTree tree)
 		{
-            base.Render(ref tree);
+			base.Render(ref tree);
 
 			// the NodeKey is empty for the root, but contains the folder name for sub-folders.
 			if (string.IsNullOrEmpty(this.NodeKey))
 			{
 				// Add the Web.Config node
-				XmlTreeNode xNode = XmlTreeNode.Create(this);
+				var xNode = XmlTreeNode.Create(this);
 				xNode.NodeID = "WebConfig";
 				xNode.Action = "javascript:openConfigEditor('web.config');";
 				xNode.Text = "Web.config";
@@ -88,7 +88,7 @@ namespace Our.Umbraco.Tree.Config
 			rootNode.Icon = FolderIcon;
 			rootNode.OpenIcon = FolderIconOpen;
 			rootNode.NodeID = "initConfigFiles";
-			rootNode.NodeType = String.Concat(rootNode.NodeID, "_", this.TreeAlias);
+			rootNode.NodeType = string.Concat(rootNode.NodeID, "_", this.TreeAlias);
 			rootNode.Menu = new List<IAction>(new IAction[] { ActionRefresh.Instance });
 		}
 
