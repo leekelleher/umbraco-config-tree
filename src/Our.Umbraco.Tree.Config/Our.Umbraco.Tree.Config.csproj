@@ -91,7 +91,7 @@
     <Compile Include="umbraco\developer\Config\editConfigFile.aspx.designer.cs">
       <DependentUpon>editConfigFile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="loadConfigFiles.cs" />
+    <Compile Include="LoadConfigFiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
