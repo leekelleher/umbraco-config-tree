@@ -68,7 +68,7 @@
 		</ItemGroup>
 		<TimestampOffset Files="@(BinFiles)" Offset="-11" />
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
-		<Copy SourceFiles="@(DebugFiles)" DestinationFolder="$(BuildDir)\bin" Condition="$(VersionSuffix) != '-build'" />
+		<Copy SourceFiles="@(DebugFiles)" DestinationFolder="$(BuildDir)\bin" Condition="$(VersionSuffix.StartsWith('-build'))" />
 		<Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(BuildDir)\umbraco\developer\Config" />
 		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
 	</Target>
