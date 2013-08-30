@@ -1,6 +1,11 @@
 # Config Tree for Umbraco
 
-This page will add a tree to the developer section called "Config Files". It will list all of the `*.config` files in your `~/config` folder.  These can all be modified in the editor provided.
+This package will add a tree to the developer section called "Config Files". It will list all of the `*.config` files in your `~/config` folder.  These can all be modified in the editor provided.
+
+![Screenshot of editing a config file using Config Tree](docs/screenshot.png)
+
+The latest version of the package can be downloaded from the Our Umbraco community website:<br/>
+[http://our.umbraco.org/projects/developer-tools/config-tree](http://our.umbraco.org/projects/developer-tools/config-tree)
 
 ## Links
 
