@@ -93,7 +93,7 @@ namespace Our.Umbraco.Tree.Config
                     menuSave.AlternateText = "Save File";
                     menuSave.ImageUrl = string.Concat(GlobalSettings.Path, "/images/editor/save.gif");
                     menuSave.Click += new ImageClickEventHandler(MenuSave_Click);
-
+                    menuSave.CssClass = "btn btn-primary";
                     if (Request.QueryString["file"] == WEB_CONFIG)
                         menuSave.OnClientClick = "javascript:return confirm('You have modified the Web.config, are you sure that you still want to save?');";
                 }
