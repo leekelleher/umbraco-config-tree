@@ -83,6 +83,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheService.cs" />
+    <Compile Include="CompatibilityHelper.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="umbraco\developer\Config\editConfigFile.aspx.cs">
       <DependentUpon>editConfigFile.aspx</DependentUpon>

@@ -83,16 +83,40 @@ namespace Our.Umbraco.Tree.Config
 
 			if (this.UmbracoPanel1.hasMenu)
 			{
-				// add the save button
-				var menuSave = this.UmbracoPanel1.Menu.NewImageButton();
-				menuSave.AlternateText = "Save File";
-				menuSave.ImageUrl = string.Concat(GlobalSettings.Path, "/images/editor/save.gif");
-				menuSave.Click += new ImageClickEventHandler(MenuSave_Click);
+				
 
-				if (Request.QueryString["file"] == WEB_CONFIG)
-					menuSave.OnClientClick = "javascript:return confirm('You have modified the Web.config, are you sure that you still want to save?');";
-			}
+
+                if (!CompatibilityHelper.IsVersion7OrNewer)
+                {
+                    // add the save button
+                    var menuSave = this.UmbracoPanel1.Menu.NewImageButton();
+                    menuSave.AlternateText = "Save File";
+                    menuSave.ImageUrl = string.Concat(GlobalSettings.Path, "/images/editor/save.gif");
+                    menuSave.Click += new ImageClickEventHandler(MenuSave_Click);
+
+                    if (Request.QueryString["file"] == WEB_CONFIG)
+                        menuSave.OnClientClick = "javascript:return confirm('You have modified the Web.config, are you sure that you still want to save?');";
+                }
+                else
+                {
+                    Button b = new Button();
+                    b.CssClass = "btn btn-primary";
+                    b.Click += b_Click;
+                    b.Text = "Save";
+                    b.ToolTip = "Save";
+                    this.UmbracoPanel1.Menu.Controls[0].Controls.Add(b);
+
+                    if (Request.QueryString["file"] == WEB_CONFIG)
+                        b.OnClientClick = "javascript:return confirm('You have modified the Web.config, are you sure that you still want to save?');";
+
+                }
+            }
 		}
+
+        void b_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
 
 		/// <summary>
 		/// Handles the Load event of the Page control.
@@ -170,17 +194,22 @@ namespace Our.Umbraco.Tree.Config
 		/// <param name="e">The <see cref="System.Web.UI.ImageClickEventArgs"/> instance containing the event data.</param>
 		private void MenuSave_Click(object sender, ImageClickEventArgs e)
 		{
-			// validation?
-
-			// save the file if there are no errors
-			if (this.SaveConfigFile(this.txtName.Text, Request.QueryString["file"], this.editorSource.Text))
-			{
-				ClientTools.ShowSpeechBubble(speechBubbleIcon.save, ui.Text("speechBubbles", "fileSavedHeader"), ui.Text("speechBubbles", "fileSavedText"));
-			}
-			else
-			{
-				ClientTools.ShowSpeechBubble(speechBubbleIcon.error, ui.Text("speechBubbles", "fileErrorHeader"), ui.Text("speechBubbles", "fileErrorText"));
-			}
+		    Save();
 		}
+
+	    private void Save()
+	    {
+            // validation?
+
+            // save the file if there are no errors
+            if (this.SaveConfigFile(this.txtName.Text, Request.QueryString["file"], this.editorSource.Text))
+            {
+                ClientTools.ShowSpeechBubble(speechBubbleIcon.save, ui.Text("speechBubbles", "fileSavedHeader"), ui.Text("speechBubbles", "fileSavedText"));
+            }
+            else
+            {
+                ClientTools.ShowSpeechBubble(speechBubbleIcon.error, ui.Text("speechBubbles", "fileErrorHeader"), ui.Text("speechBubbles", "fileErrorText"));
+            }
+	    }
 	}
 }

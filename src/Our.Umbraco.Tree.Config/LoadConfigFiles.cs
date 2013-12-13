@@ -61,8 +61,15 @@ namespace Our.Umbraco.Tree.Config
 				xNode.NodeID = "WebConfig";
 				xNode.Action = "javascript:openConfigEditor('web.config');";
 				xNode.Text = "Web.config";
-				xNode.Icon = "../../developer/Config/config.gif";
-				xNode.OpenIcon = xNode.Icon;
+			    if (CompatibilityHelper.IsVersion7OrNewer)
+			    {
+                    xNode.Icon = "icon-document"; 
+			    }
+			    else
+			    {
+			        xNode.Icon = "../../developer/Config/config.gif";
+			    }
+			    xNode.OpenIcon = xNode.Icon;
 				tree.Add(xNode);
 			}
 		}
@@ -110,8 +117,15 @@ namespace Our.Umbraco.Tree.Config
 		{
 			xNode.Action = xNode.Action.Replace("openFile", "openConfigEditor");
 			xNode.Menu = new List<IAction>();
-			xNode.Icon = "../../developer/Config/config.gif";
-			xNode.OpenIcon = xNode.Icon;
+		    if (CompatibilityHelper.IsVersion7OrNewer)
+		    {
+                xNode.Icon = "icon-document"; 
+		    }
+		    else
+		    {
+		        xNode.Icon = "../../developer/Config/config.gif";
+		    }
+		    xNode.OpenIcon = xNode.Icon;
 		}
 	}
 }
