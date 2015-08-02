@@ -247,7 +247,7 @@
 			</umb:PropertyPanel>
 
 			<umb:PropertyPanel runat="server" ID="PropertyPanel3">
-				<umb:CodeArea runat="server" ID="editorSource" CodeBase="XML" AutoResize="true" OffSetX="47" OffSetY="47"  />
+				<umb:CodeArea runat="server" ID="editorSource" AutoResize="true" OffSetX="47" OffSetY="47"  />
 			</umb:PropertyPanel>
 
 		</umb:Pane>

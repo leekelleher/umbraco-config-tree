@@ -83,9 +83,6 @@ namespace Our.Umbraco.Tree.Config
 
 			if (this.UmbracoPanel1.hasMenu)
 			{
-				
-
-
                 if (!CompatibilityHelper.IsVersion7OrNewer)
                 {
                     // add the save button
@@ -108,7 +105,6 @@ namespace Our.Umbraco.Tree.Config
 
                     if (Request.QueryString["file"] == WEB_CONFIG)
                         b.OnClientClick = "javascript:return confirm('You have modified the Web.config, are you sure that you still want to save?');";
-
                 }
             }
 		}
@@ -170,6 +166,10 @@ namespace Our.Umbraco.Tree.Config
 
 					if (!string.IsNullOrEmpty(fileContents))
 						this.editorSource.Text = fileContents;
+
+                    this.editorSource.CodeBase = configFile.EndsWith(".js")
+                        ? CodeArea.EditorType.JavaScript
+                        : CodeArea.EditorType.XML;
 				}
 				else
 				{
@@ -187,12 +187,22 @@ namespace Our.Umbraco.Tree.Config
 			}
 		}
 
-		/// <summary>
-		/// Handles the Click event of the MenuSave control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Web.UI.ImageClickEventArgs"/> instance containing the event data.</param>
-		private void MenuSave_Click(object sender, ImageClickEventArgs e)
+        protected override void OnPreRenderComplete(EventArgs e)
+        {
+            base.OnPreRenderComplete(e);
+
+            if (this.editorSource.CodeBase == CodeArea.EditorType.JavaScript)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the MenuSave control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Web.UI.ImageClickEventArgs"/> instance containing the event data.</param>
+        private void MenuSave_Click(object sender, ImageClickEventArgs e)
 		{
 		    Save();
 		}
