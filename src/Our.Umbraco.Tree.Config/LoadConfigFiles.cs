@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 using System.Text;
 using umbraco;
 using umbraco.businesslogic;
@@ -71,8 +73,29 @@ namespace Our.Umbraco.Tree.Config
 			    }
 			    xNode.OpenIcon = xNode.Icon;
 				tree.Add(xNode);
-			}
-		}
+
+                // Add extra config files specified in ExtraConfigFiles setting.
+                var items = ConfigurationManager.AppSettings["ExtraConfigFiles"].Split(',').Select(s => new { Title = s.Split(':').First(), Filename = s.Split(':', '=').Last() });
+
+                foreach (var item in items)
+                {
+                    var cNode = XmlTreeNode.Create(this);
+                    cNode.NodeID = item.Title;
+                    cNode.Action = "javascript:openConfigEditor('" + item.Filename + "');";
+                    cNode.Text = item.Title;
+                    if (CompatibilityHelper.IsVersion7OrNewer)
+                    {
+                        cNode.Icon = "icon-document";
+                    }
+                    else
+                    {
+                        cNode.Icon = "../../developer/Config/config.gif";
+                    }
+                    cNode.OpenIcon = cNode.Icon;
+                    tree.Add(cNode);
+                }
+            }
+        }
 
 		/// <summary>
 		/// Renders the JS.

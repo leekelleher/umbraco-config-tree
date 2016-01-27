@@ -2,3 +2,6 @@ Add an extra tree to the developer section, called "Config Files".
 This lists all the config files, including in sub-folders, to be edited.
 
 In this version the Web.config is also available to edit.
+
+Additinal files can be added manualy with ExtraConfigFiles AppSetting.  Add it and add a coma seperated list of Name=Path items where path is relative to /config.
+<add key="ExtraConfigFiles" value=".HTACCESS=../.htaccess,Robots.txt=../robots.txt,Views=../Views/Web.config,Packages=../App_Data/packages/installed/installedPackages.config" />
