@@ -40,7 +40,7 @@
 	<PropertyGroup>
 		<VersionMajor>3</VersionMajor>
 		<VersionMinor>2</VersionMinor>
-		<VersionPatch>0</VersionPatch>
+		<VersionPatch>1</VersionPatch>
 		<VersionSuffix></VersionSuffix>
 		<UmbracoVersion>4.8.0</UmbracoVersion>
 	</PropertyGroup>
@@ -85,8 +85,8 @@
 	<Target Name="PrepareFiles" DependsOnTargets="Compile">
     
     <ItemGroup>
-      <RootFiles Include="$(CoreProjectDir)\umbraco\developer\Config\*.*" />
-	
+      <RootFiles Include="$(CoreProjectDir)\umbraco\developer\Config\*.aspx" />
+      <GifFiles Include="$(CoreProjectDir)\umbraco\developer\Config\*.gif" />
       <BinFiles Include="$(CoreProjectDir)\bin\**\Our.Umbraco.Tree.Config.dll" />
 	  <NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
 	  <NugetReadmeFile Include="$(MSBuildProjectDirectory)\readme.txt" />
@@ -99,7 +99,7 @@
 	<Copy SourceFiles="@(NugetReadmeFile)" DestinationFolder="$(BuildNuGetDir)\" />
 	
 	<Copy SourceFiles="@(RootFiles)" DestinationFolder="$(BuildNuGetDir)\Content\umbraco\developer\Config\" />
-	
+	<Copy SourceFiles="@(GifFiles)" DestinationFolder="$(BuildNuGetDir)\Content\umbraco\developer\Config\" />
     <Copy SourceFiles="@(BinFiles)"
     DestinationFiles="@(BinFiles->'$(BuildNuGetDir)\lib\%(RecursiveDir)%(Filename)%(Extension)')" />
 	
