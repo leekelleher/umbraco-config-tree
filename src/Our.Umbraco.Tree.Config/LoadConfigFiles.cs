@@ -41,7 +41,7 @@ namespace Our.Umbraco.Tree.Config
 		{
 			get
 			{
-				return "*.config*";
+				return "config,xml,json";
 			}
 		}
 
